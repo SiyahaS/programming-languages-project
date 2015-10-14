@@ -1,0 +1,28 @@
+package coffee.datatypes;
+
+/**
+ * Created by ft on 10/2/15.
+ */
+public class ValueInt implements Value {
+    private Integer mValue = null;
+
+    @Override
+    public Type getType() {
+        return Type.INTEGER;
+    }
+
+    @Override
+    public Integer getValue() {
+        return mValue;
+    }
+
+    @Override
+    public String getTokenName() {
+        return "VALUE_INT";
+    }
+
+    @Override
+    public Token.Type getTokenType() {
+        return Token.Type.VALUE;
+    }
+}
