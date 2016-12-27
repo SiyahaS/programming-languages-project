@@ -10,8 +10,7 @@ import java.util.List;
  * Created by ft on 10/8/15.
  */
 public class TokenList {
-    private List<Token> mCurrentLine = new ArrayList<Token>();
-    private List< List<Token> > mTokens = new ArrayList< List<Token> >();
+    private List<Token> mTokens = new ArrayList<Token>();
 
     private static final TokenList INSTANCE = new TokenList();
 
@@ -22,31 +21,18 @@ public class TokenList {
     }
 
     /**
-     * Adds a token to the current line.
+     * Adds a token.
      * @param token
      */
     public void addToken(Token token) {
-        mCurrentLine.add(token);
+        mTokens.add(token);
     }
 
     /**
-     * Returns the tokens of the current line
-     * @return
+     * Returns all tokens
+     * @return all tokens
      */
-    public List<Token> getCurrentTokens() {
-        return mCurrentLine;
-    }
-
-    /**
-     * Adds current line's tokens to the tokens list and
-     * initializes a new token list for new line.
-     */
-    public void newLine() {
-        mTokens.add(mCurrentLine);
-        mCurrentLine = new ArrayList<Token>();
-    }
-
-    public List< List<Token> > getAllTokens() {
+    public List<Token> getAllTokens() {
         return mTokens;
     }
 

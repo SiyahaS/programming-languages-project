@@ -1,5 +1,8 @@
 package coffee;
 
+import coffee.project.Parser;
+
+import java.io.File;
 import java.util.Scanner;
 
 /**
@@ -51,6 +54,15 @@ public final class REPL {
         }
     }
 
+    public static void repl(String filePath) {
+        File file = new File(filePath);
+        if(!file.exists()) {
+            System.err.println("Unable to open file: "+filePath);
+            System.exit(2);
+        }
+
+    }
+
     public static void repl(LineInputCallback callback) {
 
         // Ctrl-C handler
@@ -65,10 +77,21 @@ public final class REPL {
 
         String line;
         String prompt = null;
+
         while(true) {
             line = getString(prompt);
-            prompt = callback.lineInput(line);
+            if(line.equals("(quit)"))
+                break;
+            try {
+                prompt = callback.lineInput(line);
+            } catch (InvalidSyntaxException exc) {
+                System.err.println("Invalid syntax!");
+                exc.printStackTrace();
+            }
         }
+
+        Parser p = new Parser();
+        p.parse();
     }
 
     public static interface LineInputCallback {
@@ -81,6 +104,9 @@ public final class REPL {
          * @param line User input
          * @return Prompt or null
          */
-        public String lineInput(String line);
+        public String lineInput(String line) throws InvalidSyntaxException;
+    }
+
+    public static class InvalidSyntaxException extends Exception {
     }
 }

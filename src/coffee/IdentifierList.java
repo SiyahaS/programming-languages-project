@@ -1,43 +1,37 @@
 package coffee;
 
-import coffee.datatypes.Value;
-
-import java.util.Map;
-import java.util.TreeMap;
-
-// token keyword, operator, digit, id(unique number),
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Holds all the variables with unique names.
- * All variable initializations and assignments should use {@code addVariable} method.
+ * Holds all the identifiers with unique names.
  * Created by ft on 10/2/15.
  */
 public class IdentifierList {
-    private static int mVarCount = 0;
-    private static Map<String,Value> mVariableList = new TreeMap<String, Value>();
+    private static int mIdCount = 0;
+    private static List<String> mIdentifiers = new ArrayList<String>();
+    private static final IdentifierList INSTANCE = new IdentifierList();
 
-    /**
-     * Initializes a variable with null value.
-     * @param name variable's name
-     * @return variable's name in variable list.
-     */
-    public String addVariable(String name) {
-        String varName = mVarCount+"_"+name;
-        ++mVarCount;
-        mVariableList.put(varName,null);
-        return varName;
+    private IdentifierList() {}
+
+    public static IdentifierList getInstance(){
+        return INSTANCE;
     }
 
     /**
-     * Initializes a variable with value {@code variable}
-     * @param name variable name
-     * @param value variable's value
-     * @return variable's name in variable list.
+     * Initializes a identifier with null value.
+     * @param name identifier's name
+     * @return identifier's name in identifier list.
      */
-    public String addVariable(String name, Value value) {
-        String varName = mVarCount+"_"+name;
-        ++mVarCount;
-        mVariableList.put(varName, value);
+    public String addIdentifier(String name) {
+        String varName = mIdCount +"_"+name;
+        ++mIdCount;
+        mIdentifiers.add(varName);
         return varName;
     }
+
+    public List<String> getIdentifiers() {
+        return mIdentifiers;
+    }
+
 }

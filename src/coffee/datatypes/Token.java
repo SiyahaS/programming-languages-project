@@ -13,8 +13,7 @@ public interface Token {
         OPERATOR,
         BINARY_VALUE,
         INTEGER_VALUE,
-        KEYWORD,
-        VALUE
+        KEYWORD
     }
 
     /**

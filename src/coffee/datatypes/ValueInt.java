@@ -6,6 +6,12 @@ package coffee.datatypes;
 public class ValueInt implements Value {
     private Integer mValue = null;
 
+    public ValueInt() {}
+
+    public ValueInt(int value) {
+        mValue = value;
+    }
+
     @Override
     public Type getType() {
         return Type.INTEGER;
@@ -23,6 +29,11 @@ public class ValueInt implements Value {
 
     @Override
     public Token.Type getTokenType() {
-        return Token.Type.VALUE;
+        return Token.Type.INTEGER_VALUE;
+    }
+
+    @Override
+    public String toString() {
+        return getTokenName()+"_"+getValue();
     }
 }
